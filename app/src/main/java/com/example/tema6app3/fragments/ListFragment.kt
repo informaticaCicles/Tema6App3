@@ -16,7 +16,7 @@ import com.example.tema6app3.databinding.FragmentListBinding
 import com.example.tema6app3.pojos.Correo
 
 
-class ListFragment : Fragment(), OnClickListener{
+class ListFragment : Fragment(), OnClickListener {
     private lateinit var correoAdapter: CorreoAdapter
     private lateinit var linearLayoutManager: LinearLayoutManager
     private lateinit var itemDecoration: DividerItemDecoration
@@ -34,7 +34,7 @@ class ListFragment : Fragment(), OnClickListener{
         correoAdapter = CorreoAdapter(Correo.CorreoDatos.CORREOS, this)
         linearLayoutManager = LinearLayoutManager(context)
         itemDecoration = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
-        binding.recyclerIdList.apply{
+        binding.recyclerIdList.apply {
             layoutManager = linearLayoutManager
             adapter = correoAdapter
             addItemDecoration(itemDecoration)
@@ -52,15 +52,22 @@ class ListFragment : Fragment(), OnClickListener{
         return binding.root
     }
 
-    /*fun setCorreosListener(listener: CorreosListener) {
+    fun setCorreosListener(listener: CorreosListener) {
         this.listener = listener
-    }*/
-
-    override fun onClick(correo: Correo) {
-        val intent = Intent(activity, MainActivity::class.java)
-        intent.putExtra("Correo", correo)
-        startActivity(intent)
     }
 
+    override fun onClick(correo: Correo) {
+        /*val intent = Intent(activity, MainActivity::class.java)
+        intent.putExtra("Correo", correo)
+        startActivity(intent)*/
 
+
+        Toast.makeText(context, "Seleccion: ${correo.getDe()}", Toast.LENGTH_LONG).show()
+
+        if (listener != null) {
+            listener.onCorreoSeleccionado(correo)
+        }
+
+
+    }
 }
