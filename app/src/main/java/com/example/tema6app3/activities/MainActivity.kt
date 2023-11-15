@@ -25,9 +25,6 @@ class MainActivity : AppCompatActivity(), CorreosListener{
         val frgListado: ListFragment = supportFragmentManager.findFragmentById(binding.frgListado.id) as ListFragment
         frgListado.setCorreosListener(this)
 
-        //val correo = intent.getSerializableExtra("Correo") as? Correo
-
-
     }
 
     override fun onCorreoSeleccionado(correo: Correo) {
@@ -42,21 +39,6 @@ class MainActivity : AppCompatActivity(), CorreosListener{
                 transaction.commitNow()
                 detailFragment.mostrarDetalle(correo.getTexto())
 
-                /*// Find or create the DetailFragment
-                val detailFragment = supportFragmentManager.findFragmentById(R.id.frgDetalle) as? DetailFragment ?: DetailFragment()
-
-                // Add or replace the DetailFragment in a container
-                supportFragmentManager.beginTransaction()
-                    .replace(R.id.frgDetalle, detailFragment, "detailFragment").commit()
-
-                detailFragment.mostrarDetalle(correo.getTexto())*/
-
-
-
-                /* (binding.frgDetalle?.let {
-                     supportFragmentManager
-                         .findFragmentById(it.id)
-                 } as DetailFragment?)?.mostrarDetalle(correo.getTexto())*/
             }else{
                 val i = Intent(this, DetailActivity::class.java)
                 i.putExtra("TextoDetalle", correo.getTexto())

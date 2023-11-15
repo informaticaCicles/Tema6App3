@@ -57,17 +57,10 @@ class ListFragment : Fragment(), OnClickListener {
     }
 
     override fun onClick(correo: Correo) {
-        /*val intent = Intent(activity, MainActivity::class.java)
-        intent.putExtra("Correo", correo)
-        startActivity(intent)*/
-
-
         Toast.makeText(context, "Seleccion: ${correo.getDe()}", Toast.LENGTH_LONG).show()
 
         if (listener != null) {
             listener.onCorreoSeleccionado(correo)
         }
-
-
     }
 }
